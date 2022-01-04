@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
+import Facts from "./Facts";
 
 function App() {
+  const [facts, setFacts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://anime-facts-rest-api.herokuapp.com/api/v1")
+      .then((res) => {
+        setFacts(res.data.data);
+        console.log(res.data);
+      })
+      .catch((error) => alert("Error"));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="anime-facts">anime-facts</h1>
+      <div className="anime-container">
+        {facts.map((fact) => {
+          return (
+            <Facts
+              key={fact.anime_id}
+              name={fact.anime_name}
+              image={fact.anime_img}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
