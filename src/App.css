@@ -1,18 +1,15 @@
 * {
   margin-inline: auto;
-  /* width: min(90%, 1000px); */
 
-  box-sizing: border-box;
   text-align: center;
 }
 
 .anime-facts {
-  font-size: 9rem;
+  font-size: clamp(3rem, 10vw + 1rem, 5rem);
   font-weight: light;
 }
 .anime-container {
-  padding-left: 2rem;
-  width: min(90%);
+  width: min(90%, 1000px);
 }
 .anime-box {
   float: left;
@@ -24,12 +21,8 @@
   height: 20rem;
 }
 
-/* @media (max-width: 62em) {
-  .anime-image {
-    width: 30rem;
-    height: 40rem;
+@media (max-width: 700px) {
+  .anime-box {
+    float: none;
   }
-  .anime-container {
-    padding-left: 1rem;
-  }
-} */
+}
